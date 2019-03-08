@@ -45,6 +45,10 @@
   <ItemGroup>
     <Compile Include="Classes\GameImplementation\GameLogic.cs" />
     <Compile Include="Classes\GameImplementation\GameState.cs" />
+    <Compile Include="Classes\GameObject\GameObject.cs" />
+    <Compile Include="Classes\GameObject\GameObjectDamageType.cs" />
+    <Compile Include="Classes\GameObject\GameObjectType.cs" />
+    <Compile Include="Classes\Math\Vector2.cs" />
     <Compile Include="Interfaces\IGameLogic.cs" />
     <Compile Include="Interfaces\IGameState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

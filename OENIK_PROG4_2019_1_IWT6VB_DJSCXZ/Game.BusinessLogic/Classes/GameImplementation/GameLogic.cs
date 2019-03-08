@@ -11,5 +11,13 @@ namespace Game.BusinessLogic.Classes.GameImplementation
     /// </summary>
     public class GameLogic : IGameLogic
     {
+        /// <summary>
+        /// Implementation of <see cref="IGameLogic"/>
+        /// </summary>
+        /// <param name="gameState">IGameState parameter.</param>
+        /// <param name="deltaTime">Elpased time in seconds since last Update."/></param>
+        void IGameLogic.Update(IGameState gameState, double deltaTime)
+        {
+        }
     }
 }

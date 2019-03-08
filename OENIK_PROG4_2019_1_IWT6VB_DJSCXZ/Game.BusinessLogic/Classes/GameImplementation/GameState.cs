@@ -9,6 +9,7 @@ namespace Game.BusinessLogic.Classes.GameImplementation
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using Game.BusinessLogic.Classes.GameObject;
     using Game.BusinessLogic.Interfaces;
 
     /// <summary>
@@ -16,5 +17,9 @@ namespace Game.BusinessLogic.Classes.GameImplementation
     /// </summary>
     public class GameState : IGameState
     {
+        /// <summary>
+        /// Gets or sets <see cref="IGameState.Player"/>
+        /// </summary>
+        public GameObject Player { get; set; }
     }
 }
