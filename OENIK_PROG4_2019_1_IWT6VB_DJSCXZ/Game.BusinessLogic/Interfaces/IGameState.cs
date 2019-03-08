@@ -17,5 +17,10 @@ namespace Game.BusinessLogic.Interfaces
         /// Gets or sets Player
         /// </summary>
         GameObject Player { get; set; }
+
+        /// <summary>
+        /// Gets or sets the time since last update in seconds
+        /// </summary>
+        double DeltaTime { get; set; }
     }
 }

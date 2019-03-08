@@ -21,5 +21,12 @@ namespace Game.BusinessLogic.Classes.GameImplementation
         /// Gets or sets <see cref="IGameState.Player"/>
         /// </summary>
         public GameObject Player { get; set; }
+
+        /// <summary>
+        /// Gets or sets the time since last update in seconds
+        /// </summary>
+        public double DeltaTime { get; set; }
+
+
     }
 }

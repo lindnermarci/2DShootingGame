@@ -12,6 +12,7 @@ namespace Game.BusinessLogic.Classes.GameObject
     public class GameObject
     {
         private int mHealth = 100;
+        private double mRotation = 0;
 
         /// <summary>
         /// Gets or sets <see cref="Type"/>
@@ -46,7 +47,15 @@ namespace Game.BusinessLogic.Classes.GameObject
         /// <summary>
         /// Gets or sets rotation.
         /// </summary>
-        public double Rotation { get; set; }
+        public double Rotation
+        {
+            get => this.mRotation;
+
+            set
+            {
+                this.mRotation = value % 360;
+            }
+        }
 
         /// <summary>
         /// Damages the <see cref="GameObject"/>
