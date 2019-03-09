@@ -2,7 +2,7 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
-namespace Game.BusinessLogic.Classes.GameObject
+namespace Game.BusinessLogic.Classes.GameClasses
 {
     /// <summary>
     /// GameObjectType enum.
@@ -17,6 +17,11 @@ namespace Game.BusinessLogic.Classes.GameObject
         /// <summary>
         /// Wall type.
         /// </summary>
-        Wall
+        Wall,
+
+        /// <summary>
+        /// Background type.
+        /// </summary>
+        Background
     }
 }

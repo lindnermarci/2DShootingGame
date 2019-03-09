@@ -2,7 +2,7 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
-namespace Game.BusinessLogic.Classes.GameObject
+namespace Game.BusinessLogic.Classes.GameClasses
 {
     using Game.BusinessLogic.Classes.Math;
 
@@ -70,6 +70,26 @@ namespace Game.BusinessLogic.Classes.GameObject
             }
 
             return this.mHealth <= 0;
+        }
+
+        /// <summary>
+        /// Looks at gameobject, degree = 0 is the up
+        /// </summary>
+        /// <param name="other">Other gameobject.</param>
+        public void LookAt(GameObject other)
+        {
+            Vector2 diff = other.Position - this.Position;
+            this.Rotation = diff.AngleDegree + 90;
+        }
+
+        /// <summary>
+        /// Looks at position, degree = 0 is the up
+        /// </summary>
+        /// <param name="position">Pos to look at.</param>
+        public void LookAt(Vector2 position)
+        {
+            Vector2 diff = position - this.Position;
+            this.Rotation = diff.AngleDegree + 90;
         }
     }
 }

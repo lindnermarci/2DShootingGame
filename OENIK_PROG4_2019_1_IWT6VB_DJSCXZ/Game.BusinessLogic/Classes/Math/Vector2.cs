@@ -44,6 +44,46 @@ namespace Game.BusinessLogic.Classes.Math
         }
 
         /// <summary>
+        /// Gets normalized vector
+        /// </summary>
+        public Vector2 Normalized
+        {
+            get
+            {
+                double magnitude = this.Magnitude;
+
+                if (magnitude == 0)
+                {
+                    return new Vector2(0, 0);
+                }
+
+                return new Vector2(this.X / magnitude, this.Y / magnitude);
+            }
+        }
+
+        /// <summary>
+        /// Gets angle in radian
+        /// </summary>
+        public double AngleRadian
+        {
+            get
+            {
+                return Math.Atan2(this.Y, this.X);
+            }
+        }
+
+        /// <summary>
+        /// Gets angle in degree
+        /// </summary>
+        public double AngleDegree
+        {
+            get
+            {
+                return (Math.Atan2(this.Y, this.X) / Math.PI) * 180.0;
+            }
+        }
+
+        /// <summary>
         /// Operator override
         /// </summary>
         /// <param name="a">Vector A</param>
@@ -98,16 +138,7 @@ namespace Game.BusinessLogic.Classes.Math
             return new Vector2(a.X * b, a.Y * b);
         }
 
-        /// <summary>
-        /// Translates vector.
-        /// </summary>
-        /// <param name="x">X value.</param>
-        /// <param name="y">Y value.</param>
-        public void Translate(double x, double y)
-        {
-            this.X += x;
-            this.Y += y;
-        }
+
 
         /// <summary>
         /// Override of ToString

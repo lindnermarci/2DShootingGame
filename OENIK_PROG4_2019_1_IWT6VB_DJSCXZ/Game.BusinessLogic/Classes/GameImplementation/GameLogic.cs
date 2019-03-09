@@ -4,7 +4,11 @@
 
 namespace Game.BusinessLogic.Classes.GameImplementation
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using Game.BusinessLogic.Classes.GameClasses;
     using Game.BusinessLogic.Classes.Math;
+    using Game.BusinessLogic.Classes.Physics;
     using Game.BusinessLogic.Interfaces;
 
     /// <summary>
@@ -12,31 +16,80 @@ namespace Game.BusinessLogic.Classes.GameImplementation
     /// </summary>
     public class GameLogic : IGameLogic
     {
-        private double mDir = -50;
+        /// <inheritdoc/>
+        IEnumerable<string> IGameLogic.MapNames
+        {
+            get
+            {
+                return new string[0];
+            }
+        }
 
-        /// <summary>
-        /// Implementation of <see cref="IGameLogic"/>
-        /// </summary>
-        /// <param name="gameState">IGameState parameter.</param>
-        /// <param name="deltaTime">Elpased time in seconds since last Update."/></param>
+        /// <inheritdoc/>
         void IGameLogic.Update(IGameState gameState, double deltaTime)
         {
             gameState.DeltaTime = deltaTime;
+            gameState.GameTime += deltaTime;
+            gameState.RoundTime += deltaTime;
 
-            gameState.Player.Rotation += deltaTime * 90.0;
+            List<GameObject> physicsObjects = new List<GameObject>(500);
+            physicsObjects.Add(gameState.Player);
+            physicsObjects.AddRange(gameState.Enemies);
+            physicsObjects.AddRange(gameState.Map.Walls);
 
-            gameState.Player.Position += new Vector2(this.mDir * deltaTime * 2.0, 0);
+            this.HandleInput(gameState);
+            Physics2D.Calculate(physicsObjects.ToArray(), deltaTime);
+        }
 
-            if (gameState.Player.Position.X < -100)
+        private void HandleInput(IGameState gameState)
+        {
+            GameMovementInputType input;
+
+            gameState.Player.LookAt(gameState.PlayerLookAt);
+
+            if (gameState.Inputs.Count == 0)
             {
-                this.mDir = 50;
+                gameState.Player.Velocity = new Vector2(0, 0);
+                return;
             }
 
-            if (gameState.Player.Position.X > 100)
+            foreach (var enemy in gameState.Enemies)
             {
-                this.mDir = -50;
+                enemy.LookAt(gameState.Player);
             }
 
+            while (gameState.Inputs.Count > 0)
+            {
+                input = gameState.Inputs.First();
+                gameState.Inputs.Remove(input);
+
+                switch (input)
+                {
+                    case GameMovementInputType.MoveDown:
+                        gameState.Player.Velocity += new Vector2(0, 1);
+                        break;
+
+                    case GameMovementInputType.MoveUp:
+                        gameState.Player.Velocity += new Vector2(0, -1);
+                        break;
+
+                    case GameMovementInputType.MoveLeft:
+                        gameState.Player.Velocity += new Vector2(-1, 0);
+                        break;
+
+                    case GameMovementInputType.MoveRight:
+                        gameState.Player.Velocity += new Vector2(1, 0);
+                        break;
+                }
+            }
+
+            gameState.Player.Velocity = gameState.Player.Velocity.Normalized;
+            gameState.Inputs.Clear();
+        }
+
+        private void MovePlayer(GameObject player, double deltaTime)
+        {
+            player.Position += player.Velocity * deltaTime;
         }
     }
 }

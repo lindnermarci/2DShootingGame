@@ -2,7 +2,7 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
-namespace Game.BusinessLogic.Classes.GameObject
+namespace Game.BusinessLogic.Classes.GameClasses
 {
     /// <summary>
     /// GameObjectDamageType enum.

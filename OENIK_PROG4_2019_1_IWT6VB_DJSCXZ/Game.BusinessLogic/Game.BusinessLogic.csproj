@@ -43,12 +43,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\GameClasses\GameMovementInputType.cs" />
+    <Compile Include="Classes\GameClasses\GameMap.cs" />
     <Compile Include="Classes\GameImplementation\GameLogic.cs" />
     <Compile Include="Classes\GameImplementation\GameState.cs" />
-    <Compile Include="Classes\GameObject\GameObject.cs" />
-    <Compile Include="Classes\GameObject\GameObjectDamageType.cs" />
-    <Compile Include="Classes\GameObject\GameObjectType.cs" />
+    <Compile Include="Classes\GameClasses\GameEvent.cs" />
+    <Compile Include="Classes\GameClasses\GameObject.cs" />
+    <Compile Include="Classes\GameClasses\GameObjectDamageType.cs" />
+    <Compile Include="Classes\GameClasses\GameObjectType.cs" />
     <Compile Include="Classes\Math\Vector2.cs" />
+    <Compile Include="Classes\Physics\Physics2D.cs" />
     <Compile Include="Interfaces\IGameLogic.cs" />
     <Compile Include="Interfaces\IGameState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -59,6 +63,12 @@
   <ItemGroup>
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Game.Repository\Game.Repository.csproj">
+      <Project>{49a42cb6-61d9-449e-a5db-eda28a550397}</Project>
+      <Name>Game.Repository</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
